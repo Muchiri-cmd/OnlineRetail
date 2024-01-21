@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #Custom applications
     'core',
+    'userauths',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,5 @@ JAZZMIN_SETTINGS={
     #'site_logo':"",add site logo urlpath
     'copyright':"Proudly By Davis",
 }
+
+AUTH_USER_MODEL='userauths.User'
