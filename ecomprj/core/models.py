@@ -74,6 +74,7 @@ class Product(models.Model):
     product_id=ShortUUIDField(unique=True,length=10,max_length=20,prefix="PDT",alphabet="abcdefgh12345")
     title=models.CharField(max_length=100,default="Branded Tshirt")
     image=models.ImageField(upload_to=user_dir_path,default="product.jpg")
+    vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True)
     description=models.TextField(null=True,blank=True,default="This is a good product")
     #when user who created pdt deleted , do we delete product
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
@@ -101,9 +102,9 @@ class Product(models.Model):
         return self.title
 
     #calculate discounted prices
-    def get_discounted_price(self):
-        new_price=(self.price/self.standard_price) * 100
-        return new_price
+    def get_percentage_off(self):
+        discount=((self.standard_price-self.price)/self.standard_price) * 100
+        return discount
 
 #Allow users to enter multiple product images
 class ProductImages(models.Model):
