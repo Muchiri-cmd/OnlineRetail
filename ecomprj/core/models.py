@@ -10,7 +10,7 @@ STATUS_CHOICE=(
     ("delivered","Delivered"),
 )
 STATUS=(
-    ("draft","Drafr"),
+    ("draft","Draft"),
     ("disabled","Disabled"),
     ("rejected","Rejected"),
     ("inreview","in Review"),
@@ -78,7 +78,7 @@ class Product(models.Model):
     description=models.TextField(null=True,blank=True,default="This is a good product")
     #when user who created pdt deleted , do we delete product
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True)
+    category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name="category")
     price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="10.00")
     standard_price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="5.00")
     specifications=models.TextField(null=True,blank=True)
