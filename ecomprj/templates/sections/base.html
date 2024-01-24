@@ -330,7 +330,7 @@
                                     <ul>
                                         {% for category in categories %}
                                         <li>
-                                            <a href="{% url 'core:categoryproductslist' category.category_id %}"> <img src="{{category.image.url}}" alt="" />{{category.title}}</a>
+                                            <a href="{% url 'core:categoryproductslist' category.category_id %}"><img src="{{category.image.url}}" alt="" />{{category.title}}</a>
                                         </li>
                                         {% endfor %}
                                       

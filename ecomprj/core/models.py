@@ -55,6 +55,7 @@ class Vendor(models.Model):
      warranty_period=models.CharField(max_length=100,default="100")
      #dlete user model upon vendor delete ?
      user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+     date=models.DateTimeField(auto_now_add=True,null=True,blank=True)
      
 
      class Meta:
@@ -74,7 +75,7 @@ class Product(models.Model):
     product_id=ShortUUIDField(unique=True,length=10,max_length=20,prefix="PDT",alphabet="abcdefgh12345")
     title=models.CharField(max_length=100,default="Branded Tshirt")
     image=models.ImageField(upload_to=user_dir_path,default="product.jpg")
-    vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True)
+    vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True,related_name="vendor")
     description=models.TextField(null=True,blank=True,default="This is a good product")
     #when user who created pdt deleted , do we delete product
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
