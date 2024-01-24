@@ -56,6 +56,7 @@ class Vendor(models.Model):
      #dlete user model upon vendor delete ?
      user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
      date=models.DateTimeField(auto_now_add=True,null=True,blank=True)
+     cover_image=models.ImageField(upload_to=user_dir_path,default="vendor.jpg")
      
 
      class Meta:

@@ -98,7 +98,7 @@
                                     <div class="product-category">
                                         <span class="text-muted">Since {{vendor.date|date:"Y"}}</span>
                                     </div>
-                                    <h4 class="mb-5"><a href="vendor-details-1.html">{{vendor.title}}</a></h4>
+                                    <h4 class="mb-5"><a href="{% url 'core:vendordetailsview' vendor.vendor_id %}">{{vendor.title}}</a></h4>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -112,7 +112,7 @@
                                         </ul>
                                         
                                     </div>
-                                    <a href="vendor-details-1.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                                    <a href="{% url 'core:vendordetailsview' vendor.vendor_id %}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
                             </div>
                         </div>

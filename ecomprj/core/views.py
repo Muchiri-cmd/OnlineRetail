@@ -44,3 +44,12 @@ def vendor_list_view(request):
         "vendors":vendors,
     }
     return render(request,"core/vendors_list.html",context)
+
+def vendor_detail_view(request,vendor_id):
+    vendor=Vendor.objects.get(vendor_id=vendor_id)
+    products=Product.objects.filter(vendor=vendor,product_status="published")
+    context={
+        "vendor":vendor,
+        "products":products,
+    }
+    return render(request,'core/vendor-details.html',context)

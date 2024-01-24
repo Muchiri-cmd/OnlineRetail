@@ -9,4 +9,5 @@ urlpatterns=[
     path('categories/',category_list_view,name="categorieslist"),
     path("category/<category_id>/",product_list_category_view,name="categoryproductslist"),
     path("vendors/",vendor_list_view,name="vendorslist"),
+    path("vendor/<vendor_id>/",vendor_detail_view,name="vendordetailsview"),
 ]
