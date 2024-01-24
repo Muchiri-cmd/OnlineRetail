@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,WishList,ProductImages,ProductReview,Address
 
@@ -53,3 +53,17 @@ def vendor_detail_view(request,vendor_id):
         "products":products,
     }
     return render(request,'core/vendor-details.html',context)
+
+def product_detail_view(request,product_id):
+    #product=Product.objects.get_object_or_404(Product,product_id=product_id)
+    product=Product.objects.get(product_id=product_id)
+    product_images=product.product_images.all()
+    context={
+        "product":product,
+        "product_images":product_images,
+
+    }
+    
+    return render(request,'core/product-detail.html',context)
+
+    

@@ -10,4 +10,5 @@ urlpatterns=[
     path("category/<category_id>/",product_list_category_view,name="categoryproductslist"),
     path("vendors/",vendor_list_view,name="vendorslist"),
     path("vendor/<vendor_id>/",vendor_detail_view,name="vendordetailsview"),
+    path("product/<product_id>/",product_detail_view,name="productdetailview"),
 ]
