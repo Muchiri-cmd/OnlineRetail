@@ -3,6 +3,7 @@ from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from userauths.models import User
 from taggit.managers import TaggableManager
+from ckeditor_uploader.fields import RichTextUploadingField
 
 STATUS_CHOICE=(
     ("process","Processing"),
@@ -46,7 +47,8 @@ class Vendor(models.Model):
      vendor_id=ShortUUIDField(unique=True,length=10,max_length=20,prefix="VEN",alphabet="abcdefgh12345")
      title=models.CharField(max_length=100,default="Mix&Pix")
      image=models.ImageField(upload_to=user_dir_path,default="vendor.jpg")
-     description=models.TextField(null=True,blank=True,default="The most reliable vendor")
+     #description=models.TextField(null=True,blank=True,default="The most reliable vendor")
+     description=RichTextUploadingField(null=True,blank=True,default="The most reliable vendor")
      address=models.CharField(max_length=100,default="1300,O'Block")
      contact=models.CharField(max_length=100,default="+254113708866")
      response_time=models.CharField(max_length=100,default="1")
@@ -78,7 +80,9 @@ class Product(models.Model):
     title=models.CharField(max_length=100,default="Branded Tshirt")
     image=models.ImageField(upload_to=user_dir_path,default="product.jpg")
     vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True,related_name="vendor")
-    description=models.TextField(null=True,blank=True,default="This is a good product")
+    description=RichTextUploadingField(null=True,blank=True,default="This is a good product")
+    #description=models.TextField(null=True,blank=True,default="This is a good product")
+   
     #when user who created pdt deleted , do we delete product
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name="category")

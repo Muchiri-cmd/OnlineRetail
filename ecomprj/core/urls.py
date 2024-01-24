@@ -11,6 +11,7 @@ urlpatterns=[
     path("vendors/",vendor_list_view,name="vendorslist"),
     path("vendor/<vendor_id>/",vendor_detail_view,name="vendordetailsview"),
     path("product/<product_id>/",product_detail_view,name="productdetailview"),
-    path("products/tags/<tag_slug>/", tag_list, name="tags")
+    path("products/tags/<tag_slug>/", tag_list, name="tags"),
+    
 
 ]
