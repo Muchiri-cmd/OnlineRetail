@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,WishList,ProductImages,ProductReview,Address
 from taggit.models import Tag
 from taggit.managers import TaggableManager
+from django.db.models import Avg
 # Create your views here.
 def index(request):
     #products=Product.objects.all().order_by("-date")
@@ -59,11 +60,15 @@ def product_detail_view(request,product_id):
     #product=Product.objects.get_object_or_404(Product,product_id=product_id)
     product=Product.objects.get(product_id=product_id)
     category_products=Product.objects.filter(category=product.category).exclude(product_id=product_id)#[:4]
+    reviews=ProductReview.objects.filter(product=product).order_by("-date")
+    average_rating=ProductReview.objects.filter(product=product).aggregate(average=Avg('rating'))
     product_images=product.product_images.all()
     context={
         "product":product,
         "product_images":product_images,
         "category_products":category_products,
+        "reviews":reviews,
+        "average_rating":average_rating,
 
     }
     

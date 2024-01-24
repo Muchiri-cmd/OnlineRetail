@@ -160,7 +160,7 @@ class CartOrderItems(models.Model):
 class ProductReview(models.Model):
     #for each review we have user and review dropped on a single product
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    product=models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
+    product=models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,related_name="reviews")
     review=models.TextField()
     rating=models.IntegerField(choices=RATING,default=None)
     date=models.DateTimeField(auto_now_add=True)
@@ -169,7 +169,7 @@ class ProductReview(models.Model):
         verbose_name_plural="Product Reviews"
 
     def __str__(self):
-        self.product.title
+        return self.product.title
 
     def get_rating(self):
         return self.rating
