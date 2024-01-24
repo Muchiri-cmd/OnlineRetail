@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,WishList,ProductImages,ProductReview,Address
-
+from taggit.models import Tag
+from taggit.managers import TaggableManager
 # Create your views here.
 def index(request):
     #products=Product.objects.all().order_by("-date")
@@ -68,4 +69,15 @@ def product_detail_view(request,product_id):
     
     return render(request,'core/product-detail.html',context)
 
-    
+def tag_list(request,tag_slug=None):
+    products=Product.objects.filter(product_status="published").order_by("-id")
+    tag=None
+    if tag_slug:
+        tag=get_object_or_404(Tag,slug=tag_slug)
+        products=products.filter(tags__in=[tag])
+
+    context={
+        "products":products,
+        "tag":tag,
+    }
+    return render(request,"core/tag.html",context)
