@@ -5,6 +5,7 @@ from taggit.models import Tag
 from taggit.managers import TaggableManager
 from django.db.models import Avg
 from core.forms import ProductReviewForm
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
@@ -125,3 +126,20 @@ def add_review(request,product_id):
         }
        
     )
+
+def search_view(request):
+    query=request.GET['q']
+    #products=Product.objects.filter(title__icontains=query,description__icontains=query).order_by("-date")#startswith 
+    try:
+        products = Product.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        ).order_by("-date")
+    except Exception as e:
+        print(f"Error: {e}")
+        products = []
+    context={
+        "products":products,
+        "query":query,
+
+    }
+    return render(request,"core/search.html",context)
