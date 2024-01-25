@@ -64,6 +64,13 @@ def product_detail_view(request,product_id):
     category_products=Product.objects.filter(category=product.category).exclude(product_id=product_id)#[:4]
     reviews=ProductReview.objects.filter(product=product).order_by("-date")
     average_rating=ProductReview.objects.filter(product=product).aggregate(average=Avg('rating'))
+    make_review=True
+    if request.user.is_authenticated:
+        user_review_count=ProductReview.objects.filter(user=request.user,product=product).count()
+        if user_review_count>0:
+            make_review=False
+        
+
     product_images=product.product_images.all()
     review_form=ProductReviewForm()
     context={
@@ -73,6 +80,7 @@ def product_detail_view(request,product_id):
         "reviews":reviews,
         "average_rating":average_rating,
         "review_form":review_form,
+        "make_review":make_review,
 
     }
     
@@ -105,7 +113,7 @@ def add_review(request,product_id):
     context={
         'user':user.username,
         'review':request.POST['review'],
-        'rating':request.POST['rating']
+        'rating':request.POST['rating'],
     }
     average_reviews=ProductReview.objects.filter(product=product).aggregate(average=Avg("rating"))
     

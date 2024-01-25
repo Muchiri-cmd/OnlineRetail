@@ -303,19 +303,20 @@
                                                                 <div class="single-comment justify-content-between d-flex mb-30">
                                                                     <div class="user justify-content-between d-flex">
                                                                         <div class="thumb text-center">
-                                                                            <!-- ============================Add user profile image ============================   -->
-                                                                            <img src="{% static 'assets/imgs/blog/author-2.png' %}" alt="" />
+                                                                           <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg" alt="" />
                                                                             <a href="#" class="font-heading text-brand">{{review.user.username|title}}</a>
-                                                                            <!-- ================================TODO==============================================  -->
                                                                         </div>
                                                                         <div class="desc">
                                                                             <div class="d-flex justify-content-between mb-10">
                                                                                 <div class="d-flex align-items-center">
                                                                                     <span class="font-xs text-muted">{{review.date|date:"d M,Y"}}</span>
                                                                                 </div>
-                                                                                <div class="product-rate d-inline-block">
-                                                                                    <div class="product-rating" style="width: 100%"></div>
+                                                                                <div>
+                                                                                    {% for star in review.rating|ljust:review.rating %}
+                                                                                        <i class="fas fa-star text-warning"></i>
+                                                                                    {%endfor%}
                                                                                 </div>
+                                                                               
                                                                             </div>
                                                                             <p class="mb-10">{{review.review}}<a href="#" class="reply"><!--Reply--></a></p>
                                                                         </div>
@@ -357,51 +358,55 @@
                                                     </div>
                                                 </div>
                                                 <!--comment form-->
-                                                <div class="comment-form">
-                                                    <h4 class="mb-15">Add a review</h4>
-                                                    <strong class="text-success" id="reviewresponse"></strong>
-                                                    <div class="product-rate d-inline-block mb-30"></div>
-                                                    <div class="row">
-                                                        <div class="col-lg-8 col-md-12">
-                                                            <form class="form-contact comment_form" action="{% url 'core:addreview' product.product_id %}" id="commentForm" method="POST">
-                                                                {% csrf_token %}
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            {{review_form.review}}
-                                                                            <!--<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>-->
+                                                {% if make_review == True %}
+                                                {% if request.user.is_authenticated %}
+                                                    <div class="comment-form">
+                                                        <h4 class="mb-15 add-review">Add a review</h4>
+                                                        <strong class="text-success" id="reviewresponse"></strong>
+                                                        <div class="product-rate d-inline-block mb-30"></div>
+                                                        <div class="row">
+                                                            <div class="col-lg-8 col-md-12">
+                                                                <form class="form-contact comment_form hide-comment-form" action="{% url 'core:addreview' product.product_id %}" id="commentForm" method="POST">
+                                                                    {% csrf_token %}
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                {{review_form.review}}
+                                                                                <!--<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>-->
+                                                                            </div>
                                                                         </div>
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                {{review_form.rating}}
+                                                                                <!--<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>-->
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        <!--<div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
+                                                                            </div>
+                                                                        </div>-->
                                                                     </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            {{review_form.rating}}
-                                                                            <!--<textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>-->
-                                                                        </div>
+                                                                    <div class="form-group">
+                                                                        <button type="submit" class="button button-contactForm">Submit Review</button>
                                                                     </div>
-                                                                    
-                                                                    <!--<div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                                        </div>
-                                                                    </div>-->
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="button button-contactForm">Submit Review</button>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {% endif %}
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
