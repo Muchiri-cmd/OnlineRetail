@@ -148,8 +148,14 @@ def search_view(request):
 def filter_product(request):
     categories = request.GET.getlist("category[]")
     vendors = request.GET.getlist("vendor[]")
-
     products=Product.objects.filter(product_status="published").order_by("-product_id").distinct()#more specific
+    min_price=request.GET['min_price']
+    max_price=request.GET['max_price']
+
+    products=products.filter(price__gte=min_price)#>=
+    products=products.filter(price__lte=max_price)
+
+   
     if len(categories)>0:
         products=products.filter(category__category_id__in=categories)
 

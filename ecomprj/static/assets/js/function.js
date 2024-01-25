@@ -53,9 +53,13 @@ $("#commentForm").submit(function(e){
 })
 
 $(document).ready(function(e){
-    $(".filter-checkbox").on("click",function(){
+    $(".filter-checkbox,#price-filter-btn").on("click",function(){
         //console.log("A checkbox has been clicked");
         let filter_object={}
+        let min_price=$("#max_price").attr("min");
+        let max_price=$("#max_price").val()
+        filter_object.min_price=min_price;
+        filter_object.max_price=max_price;
         $(".filter-checkbox").each(function(){
             
             let filter_value=$(this).val()
@@ -95,7 +99,7 @@ $(document).ready(function(e){
             alert("Price Must be between"+ min_price + ' $' +' and '+ max_price+' $');
             $(this).val(min_price);
             $(this).focus();
-            $('#range').val(min);
+            $('#range').val(min_price);
         }
            
 
