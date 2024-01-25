@@ -12,6 +12,7 @@ urlpatterns=[
     path("vendor/<vendor_id>/",vendor_detail_view,name="vendordetailsview"),
     path("product/<product_id>/",product_detail_view,name="productdetailview"),
     path("products/tags/<tag_slug>/", tag_list, name="tags"),
+    path("add_review/<product_id>/",add_review,name="addreview")
     
 
 ]
