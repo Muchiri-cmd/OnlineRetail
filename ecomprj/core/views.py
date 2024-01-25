@@ -6,6 +6,7 @@ from taggit.managers import TaggableManager
 from django.db.models import Avg
 from core.forms import ProductReviewForm
 from django.db.models import Q
+from django.template.loader import render_to_string
 
 # Create your views here.
 def index(request):
@@ -143,3 +144,25 @@ def search_view(request):
 
     }
     return render(request,"core/search.html",context)
+
+def filter_product(request):
+    categories = request.GET.getlist("category[]")
+    vendors = request.GET.getlist("vendor[]")
+
+    products=Product.objects.filter(product_status="published").order_by("-product_id").distinct()#more specific
+    if len(categories)>0:
+        products=products.filter(category__category_id__in=categories)
+
+    if len(vendors)>0:
+        products=products.filter(vendor__vendor_id__in=vendors).order_by("-vendor_id").distinct()
+
+    context={
+        "products":products,
+        
+    }
+
+    data = render_to_string("core/async/product-list.html",context)
+    return JsonResponse({
+        "data":data,
+
+    })
