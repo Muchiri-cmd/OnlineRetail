@@ -89,9 +89,15 @@
                                                     <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-20">
                                                 </div>
                                                 <div class="product-extra-link2">
-                                                    <input type="hidden" value="{{product.id}}" class="product-id" name="" id="">
-                                                    <input type="hidden" value="{{product.title}}"class="product-title" name="" id="">
-                                                    <button type="submit" class="button button-add-to-cart" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                                    <!--<input type="hidden" value="{{product.id}}" class="product-id" name="" id="">
+                                                    <input type="hidden" value="{{product.title}}"class="product-title" name="" id="">-->
+                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">
+                                                    <input type="hidden" class="product-productid-{{product.id}}" value="{{product.product_id}}">
+                                                    <input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
+                                                    <input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
+                                                    <input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">
+
+                                                    <button type="submit" data-index="{{product.id}}" class="button add-to-cart-btn" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                     <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                     <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
                                                 </div>
@@ -450,7 +456,7 @@
                                                             <span> </span>
                                                         </div>
                                                         <div class="product-price">
-                                                            <span class="current-price text-brand" id="current-product-price">{{category_product.price}}</span>
+                                                            <span>$</span><span id="current-product-price-{{product.id}}">{{category_product.price}}</span>
                                                             <span class="old-price">${{category_product.standard_price}}</span>
                                                         </div>
                                                     </div>

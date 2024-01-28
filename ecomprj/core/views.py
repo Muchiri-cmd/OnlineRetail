@@ -178,7 +178,9 @@ def add_to_cart(request):
     cart_product[str(request.GET['id'])]={#from ajax submission
         'title':request.GET['title'],
         'qty':request.GET['qty'],
-        'price':request.GET['price']
+        'price':request.GET['price'],
+        'image':request.GET['img'],
+        'pid':request.GET['pid']
     }
     if 'cart_data_obj' in request.session:#Get current active session in browser
         if str(request.GET['id']) in request.session['cart_data_obj']:
