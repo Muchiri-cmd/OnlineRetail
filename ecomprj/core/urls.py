@@ -14,7 +14,8 @@ urlpatterns=[
     path("products/tags/<tag_slug>/", tag_list, name="tags"),
     path("add_review/<product_id>/",add_review,name="addreview"),
     path("search/",search_view,name="search"),
-    path("filter-products/",filter_product,name="filterproducts")
+    path("filter-products/",filter_product,name="filterproducts"),
+    path("add-to-cart/",add_to_cart,name="add-to-cart"),
     
 
 ]

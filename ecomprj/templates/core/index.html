@@ -84,7 +84,7 @@
                                                     <div class="product-action-1">
                                                         <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
-                                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                        <a href="{% url 'core:productdetailview' product.product_id %}" class="action-btn" ><i class="fi-rs-eye"></i></a>
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
                                                         <span class="hot">-{{product.get_percentage_off|floatformat:0}}%</span>
@@ -94,7 +94,7 @@
                                                     <div class="product-category">
                                                         <a href="shop-grid-right.html">{{product.category}}</a>
                                                     </div>
-                                                    <h2><a href="shop-product-right.html">{{product.title}}</a></h2>
+                                                    <h2><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title}}</a></h2>
                                                     <div class="product-rate-cover">
                                                         <div class="product-rate d-inline-block">
                                                             <div class="product-rating" style="width: 90%"></div>
