@@ -2,6 +2,7 @@
 {% load static%}
 {%block content%}
 
+
     <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -86,12 +87,12 @@
                                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                                 </div>-->
                                                 <div>
-                                                    <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-20">
+                                                    <input type="number" value="1" name="" id="product-quantity" class="w-25 mb-20 product-quantity-{{product.id}}">
                                                 </div>
                                                 <div class="product-extra-link2">
                                                     <!--<input type="hidden" value="{{product.id}}" class="product-id" name="" id="">
                                                     <input type="hidden" value="{{product.title}}"class="product-title" name="" id="">-->
-                                                    <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">
+                                                    <!--<input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">-->
                                                     <input type="hidden" class="product-productid-{{product.id}}" value="{{product.product_id}}">
                                                     <input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
                                                     <input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
@@ -543,21 +544,12 @@
                             <div class="sidebar-widget widget-category-2 mb-30">
                                 <h5 class="section-title style-1 mb-30">Category</h5>
                                 <ul>
+                                    {%for category in categories%}
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />Milks & Dairies</a><span class="count">30</span>
+                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />{{category.title}}</a><span class="count">30</span>
                                     </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-2.svg' %}" alt="" />Clothing</a><span class="count">35</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-3.svg' %}" alt="" />Pet Foods </a><span class="count">42</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-4.svg' %}" alt="" />Baking material</a><span class="count">68</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-5.svg' %}" alt="" />Fresh Fruit</a><span class="count">87</span>
-                                    </li>
+                                    {%endfor%}
+                                    
                                 </ul>
                             </div>
                             <!-- Fillter By Price -->
@@ -574,7 +566,7 @@
                                 </div>
                                 <div class="list-group">
                                     <div class="list-group-item mb-10 mt-10">
-                                        <label class="fw-900">Color</label>
+                                        <!--<label class="fw-900">Color</label>
                                         <div class="custome-checkbox">
                                             <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
                                             <label class="form-check-label" for="exampleCheckbox1"><span>Red (56)</span></label>
@@ -584,7 +576,7 @@
                                             <br />
                                             <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" value="" />
                                             <label class="form-check-label" for="exampleCheckbox3"><span>Blue (54)</span></label>
-                                        </div>
+                                        </div>-->
                                         <label class="fw-900 mt-15">Item Condition</label>
                                         <div class="custome-checkbox">
                                             <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" value="" />
@@ -605,7 +597,7 @@
                                 <h5 class="section-title style-1 mb-30">New products</h5>
                                 <div class="single-post clearfix">
                                     <div class="image">
-                                        <img src="{% static 'assets/imgs/shop/thumbnail-3.jpg' %}" alt="#" />
+                                        <img src="{% static 'assets/imgs/shop/hoodie.jpeg' %}" alt="#" />
                                     </div>
                                     <div class="content pt-10">
                                         <h5><a href="shop-product-detail.html">Chen Cardigan</a></h5>
@@ -617,7 +609,7 @@
                                 </div>
                                 <div class="single-post clearfix">
                                     <div class="image">
-                                        <img src="{% static 'assets/imgs/shop/thumbnail-4.jpg' %}" alt="#" />
+                                        <img src="{% static 'assets/imgs/shop/sweatshirt.jpeg' %}" alt="#" />
                                     </div>
                                     <div class="content pt-10">
                                         <h6><a href="shop-product-detail.html">Chen Sweater</a></h6>
@@ -629,7 +621,7 @@
                                 </div>
                                 <div class="single-post clearfix">
                                     <div class="image">
-                                        <img src="{% static 'assets/imgs/shop/thumbnail-5.jpg' %}" alt="#" />
+                                        <img src="{% static 'assets/imgs/shop/windbreaker.jpeg' %}" alt="#" />
                                     </div>
                                     <div class="content pt-10">
                                         <h6><a href="shop-product-detail.html">Colorful Jacket</a></h6>
@@ -641,11 +633,12 @@
                                 </div>
                             </div>
                             <div class="banner-img wow fadeIn mb-lg-0 animated d-lg-block d-none">
-                                <img src="{% static 'assets/imgs/banner/banner-11.png' %}" alt="" />
-                                <div class="banner-text">
-                                    <span>Oganic</span>
-                                    <h4>
-                                        Save 17% <br /> on <span class="text-brand">Oganic</span><br /> Juice
+                                <img src="{% static 'assets/imgs/shop/smartwatch2.jpeg' %}" alt="" style="opacity: 0.8;">
+        
+                                <div class="banner-text" >
+                                    <span style="color:white">oraimo</span>
+                                    <h4 style="color:white">
+                                        Save 17% <br /> on <span class="text-brand">Smart</span><br />Watches
                                     </h4>
                                 </div>
                             </div>

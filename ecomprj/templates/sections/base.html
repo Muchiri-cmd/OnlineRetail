@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Multipurpose eCommerce HTML Template</title>
+    <title>JustShop</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -151,8 +151,8 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
                             <ul>
-                                <li>Need help? Call Us: <strong class="text-brand"> + 1800 900</strong></li>
-                                <li>
+                                <li>Need help? Call Us: <strong class="text-brand"> + 254 113708866</strong></li>
+                                <li><!--
                                     <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
@@ -164,9 +164,10 @@
                                         <li>
                                             <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />Pусский</a>
                                         </li>
-                                    </ul>
+                                    </ul>-->
                                 </li>
                                 <li>
+                                    <!--
                                     <a class="language-dropdown-active" href="#">USD <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
@@ -178,7 +179,7 @@
                                         <li>
                                             <a href="#"><img src="{% static 'assets/imgs/theme/flag-ru.png' %}" alt="" />EU</a>
                                         </li>
-                                    </ul>
+                                    </ul>-->
                                 </li>
                             </ul>
                         </div>
@@ -190,7 +191,7 @@
             <div class="container">
                 <div class="header-wrap">
                     <div class="logo logo-width-1">
-                        <a href="index.html"><img src="{% static 'assets/imgs/theme/logo.svg' %}" alt="logo" /></a>
+                        <a href="index.html"><img src="{% static 'assets/imgs/theme/Just Shop.jpeg' %}" alt="logo" /></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
@@ -234,13 +235,14 @@
                                         </select>
                                     </form>
                                 </div>
-                                <div class="header-action-icon-2">
+                                
+                                <!--<div class="header-action-icon-2">
                                     <a href="shop-compare.html">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-compare.svg' %}" />
                                         <span class="pro-count blue">3</span>
                                     </a>
                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
-                                </div>
+                                </div>-->
                                 <div class="header-action-icon-2">
                                     <a href="shop-wishlist.html">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
@@ -249,44 +251,16 @@
                                     <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
                                 </div>
                                 <div class="header-action-icon-2">
-                                    <a class="mini-cart-icon" href="shop-cart.html">
+                                    <a class="mini-cart-icon" href="{% url 'core:cart' %}">
                                         <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                         <span class="pro-count blue cart-items-count">{{request.session.cart_data_obj|length}}</span>
                                     </a>
-                                    <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                    <a href="{% url 'core:cart' %}"><span class="lable">Cart</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                        <ul>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="{% static 'assets/imgs/shop/thumbnail-3.jpg' %}" /></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
-                                                    <h4><span>1 × </span>$800.00</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Nest" src="{% static 'assets/imgs/shop/thumbnail-2.jpg' %}" /></a>
-                                                </div>
-                                                <div class="shopping-cart-title">
-                                                    <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
-                                                    <h4><span>1 × </span>$3200.00</h4>
-                                                </div>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        
                                         <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-total">
-                                                <h4>Total <span>$4000.00</span></h4>
-                                            </div>
-                                            <div class="shopping-cart-button">
-                                                <a href="shop-cart.html" class="outline">View cart</a>
+                                                                                       <div class="shopping-cart-button">
+                                                <a href="{% url 'core:cart' %}" class="outline">View cart</a>
                                                 <a href="shop-checkout.html">Checkout</a>
                                             </div>
                                         </div>
@@ -322,7 +296,7 @@
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="index.html"><img src="{% static 'assets/imgs/theme/logo.svg' %}" alt="logo" /></a>
+                        <a href="index.html"><img src="{% static 'assets/imgs/theme/Just Shop.jpeg' %}" alt="logo" /></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-categori-wrap d-none d-lg-block">
@@ -406,7 +380,7 @@
                                             <li><a href="vendor-guide.html">Vendor Guide</a></li>
                                         </ul>
                                     </li>
-                                    <li class="position-static">
+                                    <!--<li class="position-static">
                                         <a href="#">Mega menu <i class="fi-rs-angle-down"></i></a>
                                         <ul class="mega-menu">
                                             <li class="sub-mega-menu sub-mega-menu-width-22">
@@ -465,7 +439,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li>
                                         <a href="blog-category-grid.html">Blog <i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
@@ -506,10 +480,10 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="hotline d-none d-lg-flex">
+                    <!--<div class="hotline d-none d-lg-flex">
                         <img src="{% static 'assets/imgs/theme/icons/icon-headphone.svg' %}" alt="hotline" />
                         <p>1900 - 888<span>24/7 Support Center</span></p>
-                    </div>
+                    </div>-->
                     <div class="header-action-icon-2 d-block d-lg-none">
                         <div class="burger-icon burger-icon-white">
                             <span class="burger-icon-top"></span>
@@ -526,43 +500,16 @@
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{% url 'core:cart' %}">
                                     <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                     <span class="pro-count white cart-items-count">{{request.session.cart_data_obj|length}}</span>
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                    <ul>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="{% static 'assets/imgs/shop/thumbnail-3.jpg' %}" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
-                                                <h3><span>1 × </span>$800.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="{% static 'assets/imgs/shop/thumbnail-4.jpg' %}" /></a>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                                <h3><span>1 × </span>$3500.00</h3>
-                                            </div>
-                                            <div class="shopping-cart-delete">
-                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                   
                                     <div class="shopping-cart-footer">
-                                        <div class="shopping-cart-total">
-                                            <h4>Total <span>$383.00</span></h4>
-                                        </div>
+                                       
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html">View cart</a>
+                                            <a href="{%url 'core:cart' %}">View cart</a>
                                             <a href="shop-checkout.html">Checkout</a>
                                         </div>
                                     </div>
@@ -784,13 +731,13 @@
                                 <h2 class="mb-20">
                                     Stay home & get your daily <br /> needs from our shop
                                 </h2>
-                                <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest Mart</span></p>
+                                <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Just Shop</span></p>
                                 <form class="form-subcriber d-flex">
                                     <input type="email" placeholder="Your emaill address" />
                                     <button class="btn" type="submit">Subscribe</button>
                                 </form>
                             </div>
-                            <img src="{% static 'assets/imgs/banner/banner-9.png' %}" alt="newsletter" />
+                            <img src="{% static 'assets/imgs/banner/banner15.jpeg' %}" alt="newsletter" />
                         </div>
                     </div>
                 </div>
@@ -874,12 +821,12 @@
                     <div class="col">
                         <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0">
                             <div class="logo mb-30">
-                                <a href="index.html" class="mb-15"><img src="{% static 'assets/imgs/theme/logo.svg' %}" alt="logo" /></a>
+                                <a href="index.html" class="mb-15"><img src="{% static 'assets/imgs/theme/Just Shop.jpeg' %}" alt="logo" /></a>
                                 <p class="font-lg text-heading">Awesome grocery store website template</p>
                             </div>
                             <ul class="contact-infor">
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                                <li><img src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>(+254) - 113-708-66</span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-email-2.svg' %}" alt="" /><strong>Email:</strong><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6a190b060f2a240f191e44090507">[email&#160;protected]</a></span></li>
                                 <li><img src="{% static 'assets/imgs/theme/icons/icon-clock.svg' %}" alt="" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
                             </ul>
@@ -921,7 +868,8 @@
                             <li><a href="#">Promotions</a></li>
                         </ul>
                     </div>
-                    <div class="footer-link-widget col">
+
+                    <!--<div class="footer-link-widget col">
                         <h4 class="widget-title">Popular</h4>
                         <ul class="footer-list mb-sm-5 mb-md-0">
                             <li><a href="#">Milk & Flavoured Milk</a></li>
@@ -932,7 +880,7 @@
                             <li><a href="#">Tea & Kombucha</a></li>
                             <li><a href="#">Cheese</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="footer-link-widget widget-install-app col">
                         <h4 class="widget-title">Install App</h4>
                         <p class="wow fadeIn animated">From App Store or Google Play</p>
@@ -952,7 +900,7 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                    <p class="font-sm mb-0">&copy; 2024, <strong class="text-brand">JustShop</strong> - Ecommerce<br />All rights reserved</p>
                 </div>
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">
@@ -961,7 +909,7 @@
                     </div>
                     <div class="hotline d-lg-inline-flex">
                         <img src="{% static 'assets/imgs/theme/icons/phone-call.svg' %}" alt="hotline" />
-                        <p>1900 - 8888<span>24/7 Support Center</span></p>
+                        <p>113708866<span>24/7 Support Center</span></p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">

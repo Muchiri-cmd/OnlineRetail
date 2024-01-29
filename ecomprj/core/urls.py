@@ -16,6 +16,7 @@ urlpatterns=[
     path("search/",search_view,name="search"),
     path("filter-products/",filter_product,name="filterproducts"),
     path("add-to-cart/",add_to_cart,name="add-to-cart"),
+    path("cart/",cart_view,name="cart"),
     
 
 ]
