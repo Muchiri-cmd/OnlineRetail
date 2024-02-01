@@ -23,7 +23,10 @@ urlpatterns=[
     path("checkout/",checkout_view,name="checkout"),
     path("paypal/",include('paypal.standard.ipn.urls')),
     path("payment-completed/",payment_completed_view,name="paymentcompleted"),
-    path("payment-failed/",payment_failed_view,name="paymentfailed")
+    path("payment-failed/",payment_failed_view,name="paymentfailed"),
+    path("dashboard/",customer_dashboard,name="dashboard"),
+    path("dashboard/order/<int:id>",order_detail,name="orderdetail"),
+    path("make-default-address/",make_address_defualt,name="makeaddressdefualt")
     
 
 ]

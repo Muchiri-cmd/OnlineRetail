@@ -204,5 +204,34 @@ $(document).ready(function(e){
         })
 
     })
+
+    //Making default addresses
+    $(document).on("click",".make-default-address",function(){
+            let id=$(this).attr("data-address-id")
+            let this_val=$(this)
+
+            console.log("ID is :",id);
+            console.log("Element is:",this_val)
+
+            $.ajax({
+                url:"/make-default-address",
+                data:{
+                    "id":id,
+
+                },
+                dataType:"json",
+                success:function(response){
+                    console.log("Adress Selected..")
+                    if (response.boolean==true){
+                        $(".check").hide()
+                        $(".action_btn").show()
+
+                        $(".check"+id).show()
+                        $(".button"+id).hide()
+                    }
+                }
+            })
+
+    })
 })
 

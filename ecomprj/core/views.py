@@ -292,8 +292,15 @@ def checkout_view(request):
 
     }
     paypal_payment_button=PayPalPaymentsForm(initial=paypal_dictionary)
+    try:
+        active_address=Address.objects.get(user=request.user,status=True)
+    except:
+          messages.warning(request, "There are multiple addresses, only one should be activated.")
+            
+          active_address=None
+
     
-    return render(request,'core/checkout.html',{"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount,'paypal_payment_button':paypal_payment_button})
+    return render(request,'core/checkout.html',{"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount,'paypal_payment_button':paypal_payment_button,"active_address":active_address})
 
 @login_required   
 def payment_completed_view(request):
@@ -310,3 +317,43 @@ def payment_completed_view(request):
 def payment_failed_view(request):
     context={}
     return render(request,'core/payment-failed.html',context)
+
+@login_required
+def customer_dashboard(request):
+    orders=CartOrder.objects.filter(user=request.user).order_by("-id")
+    address=Address.objects.filter(user=request.user)
+    if request.method=="POST":
+        address=request.POST.get("address")
+        mobile_no=request.POST.get("mobile_no")
+
+        new_address=Address.objects.create(
+            address=address,
+            mobile_no=mobile_no,
+            user=request.user
+        )
+        messages.success(request,"Address added succesfully")
+        return redirect("core:dashboard")
+    context={
+        "orders":orders,
+        "address":address,
+
+    }
+    return render(request,'core/dashboard.html',context)
+
+def order_detail(request,id):
+    order=CartOrder.objects.get(user=request.user,id=id)
+    order_items=CartOrderItems.objects.filter(order=order)
+
+    context={
+        "order_items":order_items,
+        
+    }
+    return render(request,'core/order-details.html',context)
+
+def make_address_defualt(request):
+     id=request.GET['id']
+     #Deactivate all addresses as we are selecting a new one 
+     Address.objects.update(status=False)
+     #Tick the selected address
+     Address.objects.filter(id=id).update(status=True)
+     return JsonResponse({"boolean":True})
