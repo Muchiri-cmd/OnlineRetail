@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #thirdparty
     "taggit",
     "ckeditor",
+    "paypal.standard.ipn",
     #Custom applications
     'core',
     'userauths',
@@ -148,7 +149,7 @@ JAZZMIN_SETTINGS={
     #'site_logo':"",add site logo urlpath
     'copyright':"Proudly By Davis",
 }
-
+LOGIN_URL="userauths:login"
 AUTH_USER_MODEL='userauths.User'
 
 CKEDITOR_UPLOAD_PATH='uploads/'
@@ -167,3 +168,6 @@ CKEDITOR_CONFIGS={
         ),
     }
 }
+
+PAYPAL_RECEIVER_EMAIL='itsdavismuchiri21@gmail.com'
+PAYPAL_TEST=True#set false to go live
