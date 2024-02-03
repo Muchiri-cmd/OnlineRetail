@@ -350,7 +350,7 @@ def order_detail(request,id):
     }
     return render(request,'core/order-details.html',context)
 
-def make_address_defualt(request):
+def make_address_default(request):
      id=request.GET['id']
      #Deactivate all addresses as we are selecting a new one 
      Address.objects.update(status=False)
@@ -360,7 +360,10 @@ def make_address_defualt(request):
 
 @login_required
 def wishlist_view(request):
-    wishlist=WishList.objects.all()
+    try:
+        wishlist=WishList.objects.filter(user=request.user)
+    except:
+        wishlist=None
     context={
         "wishlist":wishlist
     }

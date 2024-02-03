@@ -244,7 +244,7 @@
                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
                                 </div>-->
                                 <div class="header-action-icon-2">
-                                    <a href="shop-wishlist.html">
+                                    <a href="{% url 'core:wishlist' %}">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
                                         <span class="pro-count blue">{{wishlist.count}}</span>
                                     </a>
