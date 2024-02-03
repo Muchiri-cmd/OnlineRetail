@@ -409,3 +409,26 @@ def remove_wishlist(request):
     wishlist_json=serializers.serialize("json",wishlist)
     data = render_to_string("core/async/wishlist-list.html",context)
     return JsonResponse({"data":data,"item":wishlist_json,})
+
+def contact(request):
+    return render(request,"core/contact.html")
+
+def ajax_contact(request):
+    full_name=request.GET['full_name']
+    email=request.GET['email']
+    phone=request.GET['phone']
+    subject=request.GET['subject']
+    message=request.GET['message']
+
+    contact=ContactUs.objects.create(
+        full_name=full_name,
+        email=email,
+        phone=phone,
+        subject=subject,
+        message=message,
+    )
+    data={
+        "bool":True,
+        "message":"Message Sent Successfully"
+    }
+    return JsonResponse({"data":data})
