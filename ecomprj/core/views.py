@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse,JsonResponse
 from core.models import Product,Category,Vendor,CartOrder,CartOrderItems,WishList,ProductImages,ProductReview,Address
+from userauths.models import *
 from taggit.models import Tag
 from taggit.managers import TaggableManager
 from django.db.models import Avg
@@ -322,6 +323,7 @@ def payment_failed_view(request):
 def customer_dashboard(request):
     orders=CartOrder.objects.filter(user=request.user).order_by("-id")
     address=Address.objects.filter(user=request.user)
+    profile=Profile.objects.get(user=request.user)
     if request.method=="POST":
         address=request.POST.get("address")
         mobile_no=request.POST.get("mobile_no")
@@ -334,6 +336,7 @@ def customer_dashboard(request):
         messages.success(request,"Address added succesfully")
         return redirect("core:dashboard")
     context={
+        "profile":profile,
         "orders":orders,
         "address":address,
 
