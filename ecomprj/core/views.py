@@ -357,3 +357,34 @@ def make_address_defualt(request):
      #Tick the selected address
      Address.objects.filter(id=id).update(status=True)
      return JsonResponse({"boolean":True})
+
+@login_required
+def wishlist_view(request):
+    wishlist=WishList.objects.all()
+    context={
+        "wishlist":wishlist
+    }
+    return render(request,"core/wishlist.html",context)
+
+def add_to_wishlist(request):
+    product_id=request.GET['id']
+    product=Product.objects.get(id=product_id)
+
+    context={
+
+    }
+    wishlist_count=WishList.objects.filter(product=product,user=request.user).count()
+    if wishlist_count>0:
+        context={
+            "bool":True
+        }
+    else:
+        new_wishlist=WishList.objects.create(
+            product=product,
+            user=request.user
+        )
+    context={
+        "bool":True
+    }
+    return JsonResponse(context)
+

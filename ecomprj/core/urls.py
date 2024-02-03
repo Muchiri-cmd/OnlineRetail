@@ -26,7 +26,11 @@ urlpatterns=[
     path("payment-failed/",payment_failed_view,name="paymentfailed"),
     path("dashboard/",customer_dashboard,name="dashboard"),
     path("dashboard/order/<int:id>",order_detail,name="orderdetail"),
-    path("make-default-address/",make_address_defualt,name="makeaddressdefualt")
+    path("make-default-address/",make_address_defualt,name="makeaddressdefualt"),
+    path("wishlist/",wishlist_view,name="wishlist"),
+    path("add-to-wishlist/",add_to_wishlist,name="addtowishlist"),
+    
+
     
 
 ]
