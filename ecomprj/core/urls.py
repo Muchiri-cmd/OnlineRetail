@@ -29,6 +29,7 @@ urlpatterns=[
     path("make-default-address/",make_address_default,name="makeaddressdefualt"),
     path("wishlist/",wishlist_view,name="wishlist"),
     path("add-to-wishlist/",add_to_wishlist,name="addtowishlist"),
+    path("remove-from-wishlist/",remove_wishlist,name="removefromwishlist")
     
 
     

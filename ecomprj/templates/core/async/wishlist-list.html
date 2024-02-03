@@ -1,7 +1,5 @@
-{% extends "sections/base.html" %}
-{%load static%}
-{% block content%}
-    <main class="main">
+
+    <main class="main" id="wishlist-list">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
@@ -59,7 +57,7 @@
                                         <button class="btn btn-sm add-to-cart-btn" data-index="{{item.product.id}}">Add to cart</button>
                                     </td>
                                     <td class="action text-center" data-title="Remove">
-                                        <button style="border:none; background:none;" data-wishlist-product="{{item.id}}" class="text-body delete-wishlist-product"><i class="fi-rs-trash"></i></button>
+                                        <a href="#" class="text-body"><i class="fi-rs-trash"></i></a>
                                     </td>
                                 </tr>
                                 {%empty%}
@@ -73,4 +71,3 @@
             </div>
         </div>
     </main>
-{% endblock content%}
