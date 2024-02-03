@@ -324,7 +324,7 @@ def payment_failed_view(request):
 def customer_dashboard(request):
     orders=CartOrder.objects.filter(user=request.user).order_by("-id")
     address=Address.objects.filter(user=request.user)
-    profile=Profile.objects.get(user=request.user)
+   
     if request.method=="POST":
         address=request.POST.get("address")
         mobile_no=request.POST.get("mobile_no")
@@ -337,7 +337,7 @@ def customer_dashboard(request):
         messages.success(request,"Address added succesfully")
         return redirect("core:dashboard")
     context={
-        "profile":profile,
+       
         "orders":orders,
         "address":address,
 
@@ -377,9 +377,6 @@ def add_to_wishlist(request):
     product_id=request.GET['id']
     product=Product.objects.get(id=product_id)
 
-    context={
-
-    }
     wishlist_count=WishList.objects.filter(product=product,user=request.user).count()
     if wishlist_count>0:
         context={
