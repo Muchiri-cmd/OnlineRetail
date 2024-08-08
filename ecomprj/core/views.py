@@ -21,7 +21,8 @@ def index(request):
     #products=Product.objects.all().order_by("-date")
     products=Product.objects.filter(featured=True,product_status="published")
     context={
-        "products":products
+        "products":products,
+        "new_products":Product.objects.filter(product_status="published").order_by("-date")[:3],
     }
     return render(request,'core/index.html',context)
 
@@ -33,10 +34,7 @@ def product_list_view(request):
     return render(request,'core/product-list.html',context)
 
 def category_list_view(request):
-
-
     categories=Category.objects.all()
-
     context={
         "categories":categories
     }

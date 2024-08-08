@@ -32,7 +32,4 @@ urlpatterns=[
     path("remove-from-wishlist/",remove_wishlist,name="removefromwishlist"),
     path("contact/",contact,name="contact"),
     path("ajax-contact-form",ajax_contact,name="ajaxcontact"),
-
-    
-
 ]
