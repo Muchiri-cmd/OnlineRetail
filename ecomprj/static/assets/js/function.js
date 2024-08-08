@@ -152,58 +152,50 @@ $(document).ready(function(e){
             }
         })
     })
-    
-    
-    $(".delete-product").on("click", function () {
 
-        let product_id = $(this).attr("data-product")
-        let this_val = $(this)
-
-        console.log("PRoduct ID:", product_id);
-
+    $(document).on("click", ".delete-product", function () {
+        let product_id = $(this).attr("data-product");
+        let this_val = $(this);
+      
         $.ajax({
-            url: "/delete-from-cart",
-            data: {
-                "id": product_id
-            },
-            dataType: "json",
-            beforeSend: function () {
-                this_val.hide()
-            },
-            success: function (response) {
-                this_val.show()
-                $(".cart-items-count").text(response.totalcartitems)
-                $("#cart-list").html(response.data)
-            }
-        })
-
-    })
-    $(".update-product").on("click", function () {
-
-        let product_id = $(this).attr("data-product")
-        let this_val = $(this)
-        let product_quantity=$(".product-qty-"+product_id).val()
-
-        console.log("PRoduct ID:", product_id);
-        console.log("PRoduct QTy:", product_quantity)
+          url: "/delete-from-cart",
+          data: {
+            "id": product_id
+          },
+          dataType: "json",
+          beforeSend: function () {
+            this_val.hide();
+          },
+          success: function (response) {
+            this_val.show();
+            $(".cart-items-count").text(response.totalcartitems);
+            $("#cart-list").html(response.data);
+          }
+        });
+      });
+      
+      $(document).on("click", ".update-product", function () {
+        let product_id = $(this).attr("data-product");
+        let this_val = $(this);
+        let product_quantity = $(".product-qty-" + product_id).val();
+      
         $.ajax({
-            url: "/update-cart",
-            data: {
-                "id": product_id,
-                "qty":product_quantity,
-            },
-            dataType: "json",
-            beforeSend: function () {
-                this_val.hide()
-            },
-            success: function (response) {
-                this_val.show()
-                $(".cart-items-count").text(response.totalcartitems)
-                $("#cart-list").html(response.data)
-            }
-        })
-
-    })
+          url: "/update-cart",
+          data: {
+            "id": product_id,
+            "qty": product_quantity,
+          },
+          dataType: "json",
+          beforeSend: function () {
+            this_val.hide();
+          },
+          success: function (response) {
+            this_val.show();
+            $(".cart-items-count").text(response.totalcartitems);
+            $("#cart-list").html(response.data);
+          }
+        });
+      });
 
     //Making default addresses
     $(document).on("click",".make-default-address",function(){
@@ -260,28 +252,29 @@ $(document).ready(function(e){
     })
 
     //delete from wishlist
-    $(document).on("click",".delete-wishlist-product",function(){
-        let wishlist_id=$(this).attr("data-wishlist-product")
-        let this_val=$(this)
-
-        console.log("wishlist_id is:",wishlist_id)
-
+    $(document).on("click", ".delete-wishlist-product", function(){
+        let wishlist_id = $(this).attr("data-wishlist-product");
+        let this_val = $(this);
+    
+        console.log("wishlist_id is:", wishlist_id);
+    
         $.ajax({
-            url:"/remove-from-wishlist",
-            data:{
-                "id":wishlist_id
+            url: "/remove-from-wishlist",
+            data: {
+                "id": wishlist_id
             },
-            dataType:"json",
-            beforeSend:function(){
-                this_val.html("✅")
-                console.log("deleting product from wishlist")
+            dataType: "json",
+            beforeSend: function(){
+                this_val.html("✅");
+                console.log("deleting product from wishlist");
             },
-            success:function(response){
-                $("#wishlist-list").html(response.data)
-                console.log("Successfully deleted")
+            success: function(response){
+                $("#wishlist-list").html(response.data);
+                console.log("Successfully deleted");
             },
-        })
-    })
+        });
+    });
+    
      $(document).on("submit", "#contact-form-ajax", function (e) {
         e.preventDefault()
         console.log("Submited...");
