@@ -1,6 +1,7 @@
 {% extends 'sections/base.html' %}
 
 {%load static%}
+{% load humanize %}
 
 {%block content%}
     <main class="main">
@@ -67,8 +68,8 @@
                                                     </div>
                                                     <div class="product-card-bottom">
                                                         <div class="product-price">
-                                                            <span>$</span><span id="current-product-price-{{product.id}}">{{product.price}}</span>
-                                                            <span class="old-price">${{product.standard_price}}</span>
+                                                            <span>ksh</span><span id="current-product-price-{{product.id}}"> {{product.price|floatformat:2|intcomma}}</span>
+                                                            <span class="old-price">{{product.standard_price|floatformat:2|intcomma}}</span>
                                                         </div>
                                                         <div class="add-cart">
                                                             <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">
@@ -116,7 +117,7 @@
                                 </div>
                                 <div class="content pt-10">
                                     <h5><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title}}</a></h5>
-                                    <p class="price mb-0 mt-5">{{product.price}}</p>
+                                    <p class="price mb-0 mt-5">{{product.price|floatformat:2|intcomma}}</p>
                                     
                                 </div>
                             </div>
@@ -152,7 +153,7 @@
                         {%for category in categories%}
                         <div class="card-1">
                             <figure class="img-hover-scale overflow-hidden">
-                                <a href="{% url 'core:categoryproductslist' category.category_id %}"><img src="{{category.image.url}}" alt="" /></a><span class="count">{{category.category.all.count}}</span>
+                                <a href="{% url 'core:categoryproductslist' category.category_id %}"><img src="{{category.image.url}}" alt="" /></a>
                             </figure>
                             <h6>
                                 <a href="{% url 'core:categoryproductslist' category.category_id %}">{{category.title}}</a>

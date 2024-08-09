@@ -1,5 +1,6 @@
 {% extends "sections/base.html" %}
 {%load static%}
+{% load humanize%}
 {% block content%}
     <main class="main" id="wishlist-list">
         <div class="page-header breadcrumb-wrap">
@@ -45,7 +46,7 @@
                                         
                                     </td>
                                     <td class="price" data-title="Price">
-                                        <span>$</span><span id="current-product-price-{{item.product.id}}">{{item.product.price}}</span>
+                                        <span>ksh</span><span id="current-product-price-{{item.product.id}}">{{item.product.price}}</span>
                                     </td>
                                     <td class="text-center detail-info" data-title="Stock">
                                         <span class="stock-status in-stock mb-0">{%if item.product.in_stock %}In Stock {% else %} Out of Stock {%endif%}</span>

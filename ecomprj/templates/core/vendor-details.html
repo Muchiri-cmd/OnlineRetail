@@ -2,7 +2,34 @@
 {% extends "sections/base.html" %}
 {%load static%}
 {% block content%}
+    <style>
+        .archive-header-3 {
+            position: relative;
+            background-image: url({{vendor.cover_image.url}});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .archive-header-3::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 1; 
+        }
+        
+        .archive-header-3-inner {
+            position: relative;
+            z-index: 2; 
+            padding: 20px;
+        }
 
+        
+    </style>
     <main class="main">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
@@ -128,7 +155,6 @@
                             </div>
                         </div>
                         {%endfor%}
-                        
                     </div>
                     <!--product grid-->
                     {% comment %} <div class="pagination-area mt-20 mb-20">
@@ -148,11 +174,10 @@
                             </ul>
                         </nav>
                     </div> {% endcomment %}
-
                 </div>
                 <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                     <div class="banner-img">
-                        <img src="{% static 'assets/imgs/banner/banner-10.jpg' %}" alt="" />
+                        <img src="{{vendor.image.url}}" alt="" />
                     </div>
                 </div>
             </div>

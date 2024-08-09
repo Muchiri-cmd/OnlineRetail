@@ -45,17 +45,15 @@ class Category(models.Model):
     
 class Vendor(models.Model):
      vendor_id=ShortUUIDField(unique=True,length=10,max_length=20,prefix="VEN",alphabet="abcdefgh12345")
-     title=models.CharField(max_length=100,default="Mix&Pix")
+     title=models.CharField(max_length=100)
      image=models.ImageField(upload_to=user_dir_path,default="vendor.jpg")
      #description=models.TextField(null=True,blank=True,default="The most reliable vendor")
-     description=RichTextUploadingField(null=True,blank=True,default="The most reliable vendor")
-     address=models.CharField(max_length=100,default="1300,O'Block")
-     contact=models.CharField(max_length=100,default="+254113708866")
-     response_time=models.CharField(max_length=100,default="1")
-     shipping_time=models.CharField(max_length=100,default="100")
+     description=RichTextUploadingField(null=True,blank=True)
+     address=models.CharField(max_length=100)
+     contact=models.CharField(max_length=100,default="+12345678")
      rating=models.CharField(max_length=100,default="100")
-     return_days=models.CharField(max_length=100,default="100")
-     warranty_period=models.CharField(max_length=100,default="100")
+     return_days=models.CharField(max_length=100,default="15")
+     warranty_period=models.CharField(max_length=100,default="365")
      #dlete user model upon vendor delete ?
      user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
      date=models.DateTimeField(auto_now_add=True,null=True,blank=True)
@@ -77,31 +75,32 @@ class Tags(models.Model):
     
 class Product(models.Model):
     product_id=ShortUUIDField(unique=True,length=10,max_length=20,prefix="PDT",alphabet="abcdefgh12345")
-    title=models.CharField(max_length=100,default="Branded Tshirt")
+    title=models.CharField(max_length=100)
     image=models.ImageField(upload_to=user_dir_path,default="product.jpg")
     vendor=models.ForeignKey(Vendor,on_delete=models.SET_NULL,null=True,related_name="vendor")
-    description=RichTextUploadingField(null=True,blank=True,default="This is a good product")
+    description=RichTextUploadingField(null=True,blank=True)
     #description=models.TextField(null=True,blank=True,default="This is a good product")
    
     #when user who created pdt deleted , do we delete product
-    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    # user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, editable=False)
     category=models.ForeignKey(Category,on_delete=models.SET_NULL,null=True,related_name="category")
-    price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="10.00")
-    standard_price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="5.00")
+    price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="5000")
+    standard_price=models.DecimalField(max_digits=999999999999,decimal_places=2,default="7000")
     specifications=models.TextField(null=True,blank=True)
-    product_type=models.CharField(max_length=100,default="Organic",null=True,blank=True)
-    stock_count=models.CharField(max_length=100,default="10",null=True,blank=True)
-    life=models.CharField(max_length=100,default="100 Days",null=True,blank=True)
-    manufactury_date=models.DateTimeField(auto_now_add=False,null=True,blank=True)
     tags=TaggableManager(blank=True)
-    product_status=models.CharField(choices=STATUS,max_length=10,default="inreview")
+    product_status=models.CharField(choices=STATUS,max_length=10,default="published")
     status=models.BooleanField(default=True)
     in_stock=models.BooleanField(default=True)
-    featured=models.BooleanField(default=False)
+    featured=models.BooleanField(default=True)
     #for digital products-Allow users pass in address wont show up coz its digital(sent to cust email)
     digital=models.BooleanField(default=False)
     sku=ShortUUIDField(unique=True,length=4,max_length=10,prefix="sku",alphabet="0123456789")
-    date=models.DateTimeField(null=True,blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.vendor:
+            self.user = self.vendor.user
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural="Products"

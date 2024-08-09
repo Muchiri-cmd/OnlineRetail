@@ -1,5 +1,6 @@
 {% extends "sections/base.html" %}
 {% load static%}
+{% load humanize %}
 {%block content%}
 
 
@@ -59,10 +60,10 @@
                                             </div>
                                             <div class="clearfix product-price-cover">
                                                 <div class="product-price primary-color float-left">
-                                                    <span  class="current-price text-brand">$</span><span  class="current-price text-brand" id="current-product-price">{{product.price}} </span>
+                                                    <span  class="current-price text-brand">ksh</span><span  class="current-price text-brand" id="current-product-price"> {{product.price|floatformat:2|intcomma}} </span>
                                                     <span>
                                                         <span class="save-price font-md color3 ml-15">{{product.get_percentage_off|floatformat:0}}</span>
-                                                    <span class="old-price font-md ml-15">${{product.standard_price}}</span>
+                                                    <span class="old-price font-md ml-15">{{product.standard_price|floatformat:2|intcomma}}</span>
                                                     </span>
                                                 </div>
                                             </div>
@@ -90,7 +91,17 @@
                                                 <ul class="float-start">
                                                     <li class="mb-5">SKU: <a href="#">{{product.sku}}</a></li>
                                                     <li class="mb-5">Tags: {%for tag in product.tags.all%}<a href="{%url 'core:tags' tag.slug%}" rel="tag">#{{tag.name}}, </a>{%endfor%}</li>
-                                                    <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
+                                                    <li>
+                                                        Stock: 
+                                                        <span class="text-brand ml-5">
+                                                          {% if product.in_stock %}
+                                                            In Stock
+                                                          {% else %}
+                                                            Out of Stock
+                                                          {% endif %}
+                                                        </span>
+                                                      </li>
+                                                      
                                                 </ul>
                                             </div>
                                         </div>
@@ -104,6 +115,9 @@
                                                 <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                                             </li>
                                             <li class="nav-item">
+                                                <a class="nav-link" id="Specs-tab" data-bs-toggle="tab" href="#Specs">Specifications</a>
+                                            </li>
+                                            <li class="nav-item">
                                                 <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                                             </li>
                                             <li class="nav-item">
@@ -114,6 +128,11 @@
                                             <div class="tab-pane fade show active" id="Description">
                                                 <div>
                                                     <p>{{product.description}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="Specs">
+                                                <div>
+                                                    <p>{{product.specifications}}</p>
                                                 </div>
                                             </div>
                                         
@@ -140,14 +159,6 @@
                                                     <div class="mr-30">
                                                         <p class="text-brand font-xs">Rating</p>
                                                         <h4 class="mb-0">{{product.vendor.rating}}%</h4>
-                                                    </div>
-                                                    <div class="mr-30">
-                                                        <p class="text-brand font-xs">Ship on time</p>
-                                                        <h4 class="mb-0">{{product.vendor.shipping_time}}%</h4>
-                                                    </div>
-                                                    <div>
-                                                        <p class="text-brand font-xs">Chat response</p>
-                                                        <h4 class="mb-0">{{product.vendor.response_time}}%</h4>
                                                     </div>
                                                 </div>
                                                 <p>{{product.vendor.title}} & {{product.vendor.description}}.</p>
@@ -267,8 +278,8 @@
                                                             <span> </span>
                                                         </div>
                                                         <div class="product-price">
-                                                            <span>$</span><span id="current-product-price-{{product.id}}">{{category_product.price}}</span>
-                                                            <span class="old-price">${{category_product.standard_price}}</span>
+                                                            <span>Ksh</span><span id="current-product-price-{{product.id}}">{{category_product.price|floatformat:2|intcomma}}</span>
+                                                            <span class="old-price">{{category_product.standard_price}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -329,14 +340,6 @@
                                     <div>
                                         <p class="text-brand font-xs">Rating</p>
                                         <p class="mb-0">{{product.vendor.rating}}%</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-brand font-xs">Ship on time</p>
-                                        <p class="mb-0"> . {{product.vendor.shipping_time}} %</p>
-                                    </div>
-                                    <div>
-                                        <p class="text-brand font-xs">Chat response</p>
-                                        <p class="mb-0">{{product.vendor.response_time}} %</p>
                                     </div>
                                 </div>
                                 <ul>

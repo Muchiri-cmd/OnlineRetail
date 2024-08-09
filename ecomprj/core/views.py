@@ -22,7 +22,7 @@ def index(request):
     products=Product.objects.filter(featured=True,product_status="published")
     context={
         "products":products,
-        "new_products":Product.objects.filter(product_status="published").order_by("-date")[:3],
+        "new_products":Product.objects.filter(product_status="published").order_by("-id")[:3],
     }
     return render(request,'core/index.html',context)
 

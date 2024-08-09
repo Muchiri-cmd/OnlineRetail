@@ -1,5 +1,5 @@
-{%extends 'sections/base.html'%}
 {%load static%}
+{% load humanize %}
 {%block content%}
 
 <div class="row product-grid">
@@ -38,8 +38,8 @@
                 </div>
                 <div class="product-card-bottom">
                     <div class="product-price">
-                        <span>${{product.price}}</span>
-                        <span class="old-price">${{product.standard_price}}</span>
+                        <span>ksh {{product.price|floatformat:2|intcomma}}</span>
+                        <span class="old-price">{{product.standard_price|floatformat:2|intcomma}}</span>
                     </div>
                     <div class="add-cart">
                         <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
