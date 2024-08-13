@@ -27,7 +27,10 @@ SECRET_KEY = "django-insecure-#)howz2v7ir=vqreo$g+ppq$kt=xwt+n7_5w1vha9hxy9^1!4d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+  "*",
+  'ecom-store-production.up.railway.app',
+  ]
 
 
 # Application definition
@@ -47,7 +50,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "paypal.standard.ipn",
     "whitenoise.runserver_nostatic",
-    
+
     #Custom applications
     'core',
     'userauths',
@@ -130,6 +133,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_URL = "/static/"
 
