@@ -51,7 +51,7 @@
                         <i class="fi-rs-angle-small-down angle-down"></i>
                         <i class="fi-rs-angle-small-up angle-up"></i>
                     </a>
-                    <div class="shop-product-fillter-header">
+                    <div class="shop-product-fillter-header" style="display:none;">
                         <div class="row">
                             <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
                                 <div class="card">
@@ -132,12 +132,6 @@
                                             <a href="{% url 'core:categoryproductslist' product.category.category_id %}">{{product.category}}</a>
                                     </div>
                                     <h2><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title}}</a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
                                     <div>
                                         <span class="font-small text-muted">By <a href="vendor-details-1.html">{{product.vendor}}</a></span>
                                     </div>
@@ -154,7 +148,7 @@
                                             <input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">
                                             <button class="add add-to-cart-btn" data-index="{{product.id}}" ><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
                                         </div>
-                                        <button style="border: none; background: none;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
+                                        <button style="border: none; background: none; font-size:25px" class="add-to-wishlist " data-product-item="{{product.id}}"><i
                                             class="fi-rs-heart" style="fill: aqua;"></i></button>
                                     </div>
                                 </div>

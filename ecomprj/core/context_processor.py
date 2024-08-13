@@ -8,7 +8,7 @@ def default(request):
     try:
         wishlist=WishList.objects.filter(user=request.user)
     except:
-        messages.warning(request,"You need to Login to access wishlist")
+        messages.warning(request,"You are currently not logged in. Log in to access all features.")
         wishlist=0
     try:
         address=Address.objects.get(user=request.user)

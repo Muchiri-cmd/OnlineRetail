@@ -15,6 +15,7 @@ from django.views.decorators.csrf import csrf_exempt
 from paypal.standard.forms import PayPalPaymentsForm
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from math import floor
 
 # Create your views here.
 def index(request):
@@ -72,6 +73,13 @@ def product_detail_view(request,product_id):
     category_products=Product.objects.filter(category=product.category).exclude(product_id=product_id)#[:4]
     reviews=ProductReview.objects.filter(product=product).order_by("-date")
     average_rating=ProductReview.objects.filter(product=product).aggregate(average=Avg('rating'))
+    average_rating_value = average_rating['average'] or 0
+    average_rating_value = int(average_rating_value)
+
+    half_star = 1 if average_rating['average'] and (average_rating['average'] - floor(average_rating['average'])) >= 0.5 else 0
+    empty_stars = 5 - average_rating_value - half_star
+    no_reviews = average_rating['average'] is None or average_rating['average'] == 0
+
     make_review=True
     if request.user.is_authenticated:
         user_review_count=ProductReview.objects.filter(user=request.user,product=product).count()
@@ -87,9 +95,14 @@ def product_detail_view(request,product_id):
         "category_products":category_products,
         "reviews":reviews,
         "average_rating":average_rating,
+        'average_rating_value': average_rating_value,
+        'half_star': half_star,
+        'empty_stars': empty_stars,
+        'full_star_list': list(range(average_rating_value)),
+        'empty_star_list': list(range(empty_stars)),
         "review_form":review_form,
         "make_review":make_review,
-
+        "no_reviews":no_reviews,
     }
     
     return render(request,'core/product-detail.html',context)
@@ -140,7 +153,7 @@ def search_view(request):
     try:
         products = Product.objects.filter(
             Q(title__icontains=query) | Q(description__icontains=query)
-        ).order_by("-date")
+        )
     except Exception as e:
         print(f"Error: {e}")
         products = []
@@ -264,13 +277,12 @@ def checkout_view(request):
              
         )
         
-        
         #Getting total for cart
         for p_id,item in request.session['cart_data_obj'].items():
             cart_total_amount +=int(item['qty']) * float(item['price'])
             cart_order_products = CartOrderItems.objects.create(
                 order=order,
-                invoice_no="INVOICE_NO-" + str(order.id), # INVOICE_NO-5,
+                invoice_no="INVOICE_NO-" + str(order.id),
                 item=item['title'],
                 image=item['image'],
                 quantity=item['qty'],

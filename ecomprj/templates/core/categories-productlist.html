@@ -45,15 +45,9 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{product.category}}</a>
+                                        <a href="">{{product.category}}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">{{product.title}}</a></h2>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+                                    <h2><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title}}</a></h2>
                                     <div>
                                         <span class="font-small text-muted">By <a href="{%url 'core:vendordetailsview' product.vendor.vendor_id %}">{{product.vendor}}</a></span>
                                     </div>

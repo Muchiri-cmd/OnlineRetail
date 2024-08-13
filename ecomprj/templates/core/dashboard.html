@@ -67,7 +67,7 @@
                                                                 <th>Status</th>
                                                                 <th>Total</th>
                                                                 <th>Actions</th>
-                                                            </tr>
+                                                           </tr>
                                                         </thead>
                                                         <tbody>
                                                             {% for order in orders %}
@@ -75,7 +75,7 @@
                                                                 <td>#{{order.id}}</td>
                                                                 <td>{{order.order_date}}</td>
                                                                 <td>{{order.product_status}}</td>
-                                                                <td>${{order.price}}</td>
+                                                                <td>kes {{order.price}}</td>
                                                                 <td><a href="{% url 'core:orderdetail' order.id %}" class="btn-small d-block">View</a></td>
                                                             </tr>
                                                             {%endfor%}

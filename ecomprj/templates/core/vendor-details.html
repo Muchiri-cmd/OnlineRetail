@@ -50,12 +50,6 @@
                             <span class="text-muted">Since 2{{vendor.date|date:"Y"}}</span>
                         </div>
                         <h3 class="mb-5 text-white"><a href="vendor-details-1.html" class="text-white">{{vendor.title}}.,Ltd</a></h3>
-                        <div class="product-rate-cover mb-15">
-                            <div class="product-rate d-inline-block">
-                                <div class="product-rating" style="width: 90%"></div>
-                            </div>
-                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="vendor-des mb-15">
@@ -133,18 +127,11 @@
                                     <a href="shop-grid-right.html">{{product.category}}</a>
                                 </div>
                                 <h2><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title|truncatechars:50}}</a></h2>
-                                <div class="product-rate-cover">
-
-                                    <div class="product-rate d-inline-block">
-                                        <div class="product-rating" style="width: 90%"></div>
-                                    </div>
-                                    <span class="font-small ml-5 text-muted">{{product.reviews.count}}</span>
-                                    <!--<span class="ml-30">500g</span>-->
-                                </div>
+                               
                                 <p class="mt-15 mb-15">{{product.description}}</p>
                                 <div class="product-price">
-                                    <span>${{product.price}} </span>
-                                    <span class="old-price">${{product.standard_price}}</span>
+                                    <span>Ksh {{product.price}} </span>
+                                    <span class="old-price">Ksh{{product.standard_price}}</span>
                                 </div>
                                 <div class="mt-30 d-flex align-items-center">
                                     <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>

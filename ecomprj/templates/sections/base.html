@@ -118,7 +118,7 @@
                                         <a class="active" href="{% url 'core:index' %}">Home </a>    
                                     </li>
                                     <li>
-                                        <a href="shop-grid-right.html">Categories<i class="fi-rs-angle-down"></i></a>
+                                        <a href="{% url 'core:categorieslist' %}">Categories<i class="fi-rs-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             {% for category in categories%}
                                             <li><a href="{% url 'core:categoryproductslist' category.category_id %}">{{category.title}}</a></li>
@@ -145,13 +145,13 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a href="{% url 'core:wishlist' %}">
-                                    <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
+                                    <img  src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
                                     <span class="pro-count white">{{wishlist.count}}</span>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{% url 'core:cart' %}">
-                                    <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
+                                    <img  src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                     <span class="pro-count white cart-items-count">{{request.session.cart_data_obj|length}}</span>
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
@@ -207,6 +207,10 @@
                     <!-- mobile menu start -->
                     <nav>
                         <ul class="mobile-menu font-heading">
+
+                            <li class="menu-item-has-children">
+                                <a href="{%url 'core:index' %}">Home</a>
+                            </li>
                             
                             <li class="menu-item-has-children">
                                 <a href="{%url 'core:productslist' %}">shop</a>

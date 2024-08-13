@@ -50,7 +50,6 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        
                                                         <a href="{% url 'core:productdetailview' product.product_id %}" class="action-btn" ><i class="fi-rs-eye"></i></a>
                                                     </div>
                                                     <div class="product-badges product-badges-position product-badges-mrg">
@@ -79,7 +78,7 @@
                                                             <input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">
                                                             
                                                             <button class="add add-to-cart-btn" data-index="{{product.id}}" ><i class="fi-rs-shopping-cart mr-5"></i>Add </button>
-                                                            <button style="border: none; background: none;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
+                                                            <button style="border: none; background: none; font-size:25px;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
                                                                 class="fi-rs-heart" style="fill: aqua;"></i></button>
                                                         </div>
                                                     </div>
