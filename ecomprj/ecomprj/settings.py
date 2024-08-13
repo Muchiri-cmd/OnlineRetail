@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-#)howz2v7ir=vqreo$g+ppq$kt=xwt+n7_5w1vha9hxy9^1!4d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "taggit",
     "ckeditor",
     "paypal.standard.ipn",
+    "whitenoise.runserver_nostatic",
+    
     #Custom applications
     'core',
     'userauths',
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
