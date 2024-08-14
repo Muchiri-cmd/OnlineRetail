@@ -4,7 +4,7 @@ from userauths.models import User,ContactUs
 
 #Display table
 class UserAdmin(admin.ModelAdmin):
-    list_display=['username','email','bio']
+    list_display=['username','email']#'bio']
 
 
 
