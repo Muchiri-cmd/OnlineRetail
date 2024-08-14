@@ -32,7 +32,9 @@ ALLOWED_HOSTS = [
   "*",
   'ecom-store-production.up.railway.app',
   ]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app'
+]
 
 # Application definition
 
@@ -105,6 +107,8 @@ DATABASES = {
 }
 if PRODUCTION:
     DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
+
+print(dj_database_url.parse(os.getenv('DATABASE_URL')))
     
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
