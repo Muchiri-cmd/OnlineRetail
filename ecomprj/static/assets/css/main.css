@@ -12577,5 +12577,9 @@ footer .hotline img {
         font-size: 35px;
     }
 }
-
+@media (max-width: 768px) {
+    .newsletter-img {
+        display: none;
+    }
+}
 /*# sourceMappingURL=main.css.map */
