@@ -1,7 +1,10 @@
 .vscode/
 __pycache__/
 *.pyc
-media/
+media/user*/
+media/category/**
+media/image/**
+media/product-images/**
 db.sqlite3
 venv/
 .env
