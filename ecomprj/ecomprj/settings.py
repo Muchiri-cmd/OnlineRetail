@@ -191,6 +191,7 @@ CKEDITOR_CONFIGS={
 PAYPAL_RECEIVER_EMAIL='itsdavismuchiri21@gmail.com'
 PAYPAL_TEST=True#set false to go live
 
+#cloudinary configs
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
     'API_KEY': os.getenv('API_KEY'),
