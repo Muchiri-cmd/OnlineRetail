@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 
 import dj_database_url
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -53,6 +54,8 @@ INSTALLED_APPS = [
     "ckeditor",
     "paypal.standard.ipn",
     "whitenoise.runserver_nostatic",
+    'cloudinary',
+    'cloudinary_storage',
 
     #Custom applications
     'core',
@@ -187,3 +190,11 @@ CKEDITOR_CONFIGS={
 
 PAYPAL_RECEIVER_EMAIL='itsdavismuchiri21@gmail.com'
 PAYPAL_TEST=True#set false to go live
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
