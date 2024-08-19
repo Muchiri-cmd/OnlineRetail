@@ -220,7 +220,8 @@ def cart_view(request):
     cart_total_amount=0
     if 'cart_data_obj' in request.session:
         for product_id,item in request.session['cart_data_obj'].items():
-            cart_total_amount+=int(item['qty']) * float(item['price'])
+            price = item['price'].replace(',', '').strip()
+            cart_total_amount+=int(item['qty']) * float(price)
         return render(request, "core/cart.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
     else:
         messages.warning(request,"Your cart is empty")
@@ -237,7 +238,8 @@ def delete_item_from_cart(request):
     cart_total_amount = 0
     if 'cart_data_obj' in request.session:
         for product_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
+            price = item['price'].replace(',', '').strip()
+            cart_total_amount += int(item['qty']) * float(price)
 
     context = render_to_string("core/async/cart-list.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
@@ -255,7 +257,8 @@ def update_cart(request):
     cart_total_amount = 0
     if 'cart_data_obj' in request.session:
         for product_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
+            price = item['price'].replace(',', '').strip()
+            cart_total_amount += int(item['qty']) * float(price)
 
     context = render_to_string("core/async/cart-list.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount})
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
@@ -268,7 +271,8 @@ def checkout_view(request):
     if 'cart_data_obj' in request.session:
         #getting total amount for paypal
         for product_id, item in request.session['cart_data_obj'].items():
-            total_amount += int(item['qty']) * float(item['price'])
+            price = item['price'].replace(',', '').strip()
+            total_amount += int(item['qty']) * float(price)
 
         #Create order object
         order=CartOrder.objects.create(
@@ -279,15 +283,16 @@ def checkout_view(request):
         
         #Getting total for cart
         for p_id,item in request.session['cart_data_obj'].items():
-            cart_total_amount +=int(item['qty']) * float(item['price'])
+            item_price = item['price'].replace(',', '').strip()
+            cart_total_amount +=int(item['qty']) * float(price)
             cart_order_products = CartOrderItems.objects.create(
                 order=order,
                 invoice_no="INVOICE_NO-" + str(order.id),
                 item=item['title'],
                 image=item['image'],
                 quantity=item['qty'],
-                price=item['price'],
-                total=float(item['qty']) * float(item['price'])
+                price=item_price,
+                total=float(item['qty']) * float(item_price),
             )
 
             
@@ -320,7 +325,8 @@ def payment_completed_view(request):
     cart_total_amount = 0
     if 'cart_data_obj' in request.session:
         for product_id, item in request.session['cart_data_obj'].items():
-            cart_total_amount += int(item['qty']) * float(item['price'])
+            price = item['price'].replace(',', '').strip()
+            cart_total_amount += int(item['qty']) * float(price)
         context={}
     return render(request, 'core/payment-completed.html',{'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),
                                                           'cart_total_amount':cart_total_amount})
