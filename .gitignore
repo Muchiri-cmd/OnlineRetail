@@ -1,1 +1,11 @@
 env/
+.vscode/
+__pycache__/
+*.pyc
+media/user*/
+media/category/**
+media/image/**
+media/product-images/**
+db.sqlite3
+venv/
+.env
