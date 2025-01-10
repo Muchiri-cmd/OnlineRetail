@@ -23,6 +23,8 @@
 
     <!-- ====================Font Awesome ==================================-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
+
 </head>
 
 <body>
@@ -55,15 +57,7 @@
                                         <span class="pro-count blue cart-items-count">{{request.session.cart_data_obj|length}}</span>
                                     </a>
                                     <a href="{% url 'core:cart' %}"><span class="lable">Cart</span></a>
-                                    <div class="cart-dropdown-wrap cart-dropdown-hm2">
-                                        
-                                        <div class="shopping-cart-footer">
-                                            <div class="shopping-cart-button">
-                                                <a href="{% url 'core:cart' %}" class="outline">View cart</a>
-                                                <a href="{% url 'core:checkout' %}">Checkout</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </div>
                                 <div class="header-action-icon-2">
                                     <a href="">
@@ -273,7 +267,7 @@
                                     Stay home & Shop <br /> with comfort
                                 </h2>
                                 <p class="mb-45">Start Your Shopping with <span class="text-brand">Just Shop</span></p>
-                                <form class="form-subcriber d-flex">
+                                <form class="form-subcriber d-flex" style="border:1px solid grey">
                                     <input type="email" placeholder="Your emaill address" />
                                     <button class="btn" type="submit">Subscribe</button>
                                 </form>

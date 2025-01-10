@@ -47,18 +47,18 @@
                     </div>
                     <div class="vendor-content">
                         <div class="product-category">
-                            <span class="text-muted">Since 2{{vendor.date|date:"Y"}}</span>
+                            <span class="text-white">Since {{vendor.date|date:"Y"}}</span>
                         </div>
-                        <h3 class="mb-5 text-white"><a href="vendor-details-1.html" class="text-white">{{vendor.title}}.,Ltd</a></h3>
+                        <h3 class="mb-5 text-white"><a href="" class="text-white">{{vendor.title}}.,Ltd</a></h3>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="vendor-des mb-15">
-                                    <p class="font-sm text-white">{{vendor.description}}.</p>
+                                <div class="mb-15 description-wrapper">
+                                    <p class="vendor-des">{{vendor.description|safe}}</p>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="vendor-info text-white mb-15">
-                                    <ul class="font-sm">
+                                    <ul class="font-lg">
                                         <li><img class="mr-5" src="{% static 'assets/imgs/theme/icons/icon-location.svg' %}" alt="" /><strong>Address: </strong> <span>{{vendor.address}}</span></li>
                                         <li><img class="mr-5" src="{% static 'assets/imgs/theme/icons/icon-contact.svg' %}" alt="" /><strong>Call Us:</strong><span>{{vendor.contact}}</span></li>
                                     </ul>
@@ -83,11 +83,7 @@
                                                 <img src="{% static 'assets/imgs/theme/icons/social-insta.svg' %}" alt="" />
                                             </a>
                                         </li>
-                                        <li class="hover-up">
-                                            <a href="#">
-                                                <img src="{% static 'assets/imgs/theme/icons/social-pin.svg' %}" alt="" />
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -99,7 +95,7 @@
                 <div class="col-lg-4-5">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize}} for you!</p>
+                            <h3>We have<strong class="text-brand"> {{products.count}}</strong> products{{products.count|pluralize}} for you</h3>
                         </div>
                     </div>
                     <div class="product-list mb-50">
@@ -128,16 +124,17 @@
                                 </div>
                                 <h2><a href="{% url 'core:productdetailview' product.product_id %}">{{product.title|truncatechars:50}}</a></h2>
                                
-                                <p class="mt-15 mb-15">{{product.description}}</p>
+                                <div class="mt-15 mb-15 description-wrapper">{{product.description|safe}}</div>
                                 <div class="product-price">
                                     <span>Ksh {{product.price}} </span>
                                     <span class="old-price">Ksh{{product.standard_price}}</span>
                                 </div>
                                 <div class="mt-30 d-flex align-items-center">
                                     <a aria-label="Buy now" class="btn" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add to Cart</a>
+                                    <button style="border: none; background: none;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
+                                        class="fi-rs-heart" style="fill: aqua; font-size:40px;"></i></button>
                                 </div>
-                                <button style="border: none; background: none;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
-                                    class="fi-rs-heart" style="fill: aqua; font-size:25px;"></i></button>
+                               
                                
                             </div>
                         </div>

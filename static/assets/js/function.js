@@ -76,12 +76,12 @@ $(document).ready(function(e){
             url:'/filter-products',
             data:filter_object,
             dataType:'json',
-            beforeSend:function(){
-                console.log("Trying to send data ....")
-            },
+            // beforeSend:function(){
+            //     console.log("Trying to send data ....")
+            // },
             success:function(response){
-                console.log(response)
-                console.log("Data filtered successfully")
+                // console.log(response)
+                // console.log("Data filtered successfully")
                 $("#filtered-product").html(response.data)
             }
         })
@@ -120,13 +120,13 @@ $(document).ready(function(e){
     
         
         
-        console.log("Quantity:", quantity);
-        console.log("Id:", product_id);
-        console.log("Title:", product_title)
-        console.log("Price:", product_price)
-        console.log("PID:",product_productId)
-        console.log("Image:",product_image)
-        console.log("Current element:", this_val)
+        // console.log("Quantity:", quantity);
+        // console.log("Id:", product_id);
+        // console.log("Title:", product_title)
+        // console.log("Price:", product_price)
+        // console.log("PID:",product_productId)
+        // console.log("Image:",product_image)
+        // console.log("Current element:", this_val)
         
         $.ajax({
             url : '/add-to-cart',
@@ -142,12 +142,12 @@ $(document).ready(function(e){
     
             },
             dataType:'json',
-            beforeSend:function(){
-                console.log("Adding products to cart")
-            },
+            // beforeSend:function(){
+            //     console.log("Adding products to cart")
+            // },
             success:function(res){
                 this_val.html("✅")
-                console.log("Added products to Cart")
+                // console.log("Added products to Cart")
                 $(".cart-items-count").text(res.totalcartitems)
             }
         })
@@ -202,8 +202,8 @@ $(document).ready(function(e){
             let id=$(this).attr("data-address-id")
             let this_val=$(this)
 
-            console.log("ID is :",id);
-            console.log("Element is:",this_val)
+            // console.log("ID is :",id);
+            // console.log("Element is:",this_val)
 
             $.ajax({
                 url:"/make-default-address",
@@ -213,7 +213,7 @@ $(document).ready(function(e){
                 },
                 dataType:"json",
                 success:function(response){
-                    console.log("Adress Selected..")
+                    // console.log("Adress Selected..")
                     if (response.boolean==true){
                         $(".check").hide()
                         $(".action_btn").show()
@@ -239,13 +239,13 @@ $(document).ready(function(e){
                 "id":product_id,
             },
             dataType:"json",
-            beforeSend:function(){
-                console.log("Adding to wishlist")
-            },
+            // beforeSend:function(){
+            //     console.log("Adding to wishlist")
+            // },
             success:function(response){
                 this_val.html("✅")
-                if (response.bool ==true)
-                    console.log("Added to Wishlist..");
+                // if (response.bool ==true)
+                //     console.log("Added to Wishlist..");
             }
 
         })
@@ -264,13 +264,13 @@ $(document).ready(function(e){
                 "id": wishlist_id
             },
             dataType: "json",
-            beforeSend: function(){
-                this_val.html("✅");
-                console.log("deleting product from wishlist");
-            },
+            // beforeSend: function(){
+            //     this_val.html("✅");
+            //     console.log("deleting product from wishlist");
+            // },
             success: function(response){
                 $("#wishlist-list").html(response.data);
-                console.log("Successfully deleted");
+                // console.log("Successfully deleted");
             },
         });
     });
@@ -285,11 +285,11 @@ $(document).ready(function(e){
         let subject = $("#subject").val()
         let message = $("#message").val()
 
-        console.log("Name:", full_name);
-        console.log("Email:", email);
-        console.log("Phone:", phone);
-        console.log("Subject:", subject);
-        console.log("MEssage:", message);
+        // console.log("Name:", full_name);
+        // console.log("Email:", email);
+        // console.log("Phone:", phone);
+        // console.log("Subject:", subject);
+        // console.log("MEssage:", message);
 
         $.ajax({
             url: "/ajax-contact-form",
@@ -301,11 +301,11 @@ $(document).ready(function(e){
                 "message": message,
             },
             dataType: "json",
-            beforeSend: function () {
-                console.log("Sending Data to Server...");
-            },
+            // beforeSend: function () {
+            //     console.log("Sending Data to Server...");
+            // },
             success: function (res) {
-                console.log("Sent Data to server!");
+                // console.log("Sent Data to server!");
                 $(".contact_us_p").hide()
                 $("#contact-form-ajax").hide()
                 $("#message-response").html("Message sent successfully.")

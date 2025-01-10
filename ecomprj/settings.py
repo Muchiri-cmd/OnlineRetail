@@ -31,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
   "*",
-  'ecom-store-production.up.railway.app',
   ]
 CSRF_TRUSTED_ORIGINS = [
     'https://*.railway.app'
@@ -100,7 +99,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-PRODUCTION = False
+PRODUCTION = True
 
 DATABASES = {
     "default": {

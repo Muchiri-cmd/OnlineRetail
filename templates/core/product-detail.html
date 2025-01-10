@@ -74,18 +74,17 @@
                                                 <div class="product-price primary-color float-left">
                                                     <span  class="current-price text-brand">ksh</span><span  class="current-price text-brand" id="current-product-price"> {{product.price|floatformat:2|intcomma}} </span>
                                                     <span>
-                                                        <span class="save-price font-md color3 ml-15">{{product.get_percentage_off|floatformat:0}}</span>
                                                     <span class="old-price font-md ml-15">{{product.standard_price|floatformat:2|intcomma}}</span>
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="short-desc mb-30">
-                                                <p class="font-lg">{{product.description|truncatechars:150}}</p>
+                                            <div class="short-desc mb-30 description-wrapper">
+                                                <p class="font-lg">{{product.description|truncatechars:150|safe }}</p>
                                             </div>
                                             
                                             <div class="detail-extralink mb-50">
                                                 <div>
-                                                    <input type="number" value="1" name="" id="product-quantity" class="w-50 product-quantity-{{product.id}}">
+                                                    <input type="number" value="1" min="1" max="10" name="" id="product-quantity" class="w-80 product-quantity-{{product.id}}">
                                                 </div>
                                                 <div class="product-extra-link2">
                                                     <input type="hidden" class="product-productid-{{product.id}}" value="{{product.product_id}}">
@@ -95,14 +94,17 @@
 
                                                     <button type="submit" data-index="{{product.id}}" class="button add-to-cart-btn" id="add-to-cart-btn"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
                                                     <button style="border: none; background: none;" class="add-to-wishlist " data-product-item="{{product.id}}"><i
-                                                        class="fi-rs-heart" style="fill: aqua; font-size:25px;"></i></button>
-                                                   
+                                                        class="fi-rs-heart" style="fill: aqua; font-size:40px;"></i></button>
                                                 </div>
                                             </div>
                                             <div class="font-xs">
                                                 <ul class="float-start">
                                                     <li class="mb-5">SKU: <a href="#">{{product.sku}}</a></li>
-                                                    <li class="mb-5">Tags: {%for tag in product.tags.all%}<a href="{%url 'core:tags' tag.slug%}" rel="tag">#{{tag.name}}, </a>{%endfor%}</li>
+                                                    {% if product.tags.all%}   
+                                                    <li class="mb-5">Tags: 
+                                                         {%for tag in product.tags.all%}<a href="{%url 'core:tags' tag.slug%}" rel="tag">#{{tag.name}}, </a>{%endfor%}
+                                                    </li>
+                                                    {%endif%}
                                                     <li>
                                                         Stock: 
                                                         <span class="text-brand ml-5">
@@ -138,12 +140,12 @@
                                         </ul>
                                         <div class="tab-content shop_info_tab entry-main-content">
                                             <div class="tab-pane fade show active" id="Description">
-                                                <div>
-                                                    <p>{{product.description}}</p>
+                                                <div class="description-wrapper">
+                                                    {{ product.description|safe }}
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="Specs">
-                                                <div>
+                                                <div class='description-wrapper'>
                                                     <p>{{product.specifications}}</p>
                                                 </div>
                                             </div>
