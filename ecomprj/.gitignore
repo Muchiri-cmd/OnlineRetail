@@ -8,3 +8,4 @@ media/product-images/**
 db.sqlite3
 venv/
 .env
+env/

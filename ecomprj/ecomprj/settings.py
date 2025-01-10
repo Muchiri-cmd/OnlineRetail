@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 
 import dj_database_url
-import cloudinary_storage
+# import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -100,7 +100,7 @@ from dotenv import load_dotenv
 load_dotenv()
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-PRODUCTION = True
+PRODUCTION = False
 
 DATABASES = {
     "default": {
@@ -147,6 +147,12 @@ USE_TZ = True
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_URL = "/static/"
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles') #stores all static files 
 
@@ -191,11 +197,11 @@ CKEDITOR_CONFIGS={
 PAYPAL_RECEIVER_EMAIL='itsdavismuchiri21@gmail.com'
 PAYPAL_TEST=True#set false to go live
 
-#cloudinary configs
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET')
-}
+# #cloudinary configs
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+#     'API_KEY': os.getenv('API_KEY'),
+#     'API_SECRET': os.getenv('API_SECRET')
+# }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
