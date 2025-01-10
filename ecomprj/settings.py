@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-     'django.contrib.humanize',
+    'django.contrib.humanize',
 
     #thirdparty
     "taggit",
@@ -157,6 +157,7 @@ if not DEBUG:
 STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles') #stores all static files 
 
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')] #collects all static files static folder-Holds all static files
+
 
 MEDIA_URL='/media/' #url that media files goes thru b4 we can locate them
 
